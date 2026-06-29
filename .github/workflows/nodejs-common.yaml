@@ -9,6 +9,9 @@ on:
       component:
         required: true
         type: string
+      environment:
+        required: true
+        type: string
       app_type:
         required: true
         type: string
@@ -42,7 +45,7 @@ jobs:
         run: npm install
       - name: docker build
         run: docker build -t 805778285734.dkr.ecr.us-east-1.amazonaws.com/${{
-          inputs.project }}/${{ inputs.component }}:${{
+          inputs.project }}/${{ inputs.environment }}/${{ inputs.component }}:${{
           steps.package-version.outputs.version }} .
       - name: configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v5.0.0
