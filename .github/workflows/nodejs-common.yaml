@@ -84,6 +84,6 @@ jobs:
         run: kubectl create namespace roboshop --dry-run=client -o yaml | kubectl apply -f -
       - name: deploy to EKS
         run: |
-          helm upgrade --install ${{ inputs.component}} -f values-dev.yaml --set deployment.imageVersion="$appVersion" .
+          helm upgrade --install ${{ inputs.project }}/${{ inputs.environment }}/${{ inputs.component }} -f values-dev.yaml --set deployment.imageVersion="$appVersion" .
           kubectl get pods -n roboshop
 
